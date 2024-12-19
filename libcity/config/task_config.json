@@ -1,0 +1,16 @@
+{
+    "traffic_state_pred": {
+        "allowed_model": [
+            "SSL_STMFormer"
+        ],
+        "allowed_dataset": [
+            "PeMS04", "PeMS07", "PeMS08",
+            "NYCTaxi", "T-Drive", "CHIBike"
+        ],
+        "SSL_STMFormer": {
+            "dataset_class": "SSL_STMFormerDataset",
+            "executor": "SSL_STMFormerExecutor",
+            "evaluator": "TrafficStateEvaluator"
+        }
+    }
+}
