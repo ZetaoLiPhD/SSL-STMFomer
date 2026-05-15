@@ -23,12 +23,16 @@ All 6 datasets come from the [LibCity](https://github.com/LibCity/Bigscity-LibCi
 You can train and test **SSL-STMFormer** through the following commands for 6 datasets. Parameter configuration (**--config_file**) reads the JSON file in the root directory. If you need to modify the parameter configuration of the model, please modify the corresponding **JSON** file.
 
 ```shell
-python run_model.py --task traffic_state_pred --model SSL_STMFormer --dataset PeMS04 --config_file PeMS04
-python run_model.py --task traffic_state_pred --model SSL_STMFormer --dataset PeMS08 --config_file PeMS08
-python run_model.py --task traffic_state_pred --model SSL_STMFormer --dataset PeMS07 --config_file PeMS07
-python run_model.py --task traffic_state_pred --model SSL_STMFormer --dataset NYCTaxi --config_file NYCTaxi --evaluator TrafficStateGridEvaluator
-python run_model.py --task traffic_state_pred --model SSL_STMFormer --dataset CHIBike --config_file CHIBike --evaluator TrafficStateGridEvaluator
-python run_model.py --task traffic_state_pred --model SSL_STMFormer --dataset T-Drive --config_file T-Drive --evaluator TrafficStateGridEvaluator
+
+# graph datasets (raw_data/<name>.dyna + .geo + .rel)
+python main.py --config configs/PeMS04.yaml --device cuda
+python main.py --config configs/PeMS07.yaml --device cuda
+python main.py --config configs/PeMS08.yaml --device cuda
+
+# grid datasets (raw_data/<name>.grid + .geo, 8-neighbour grid adjacency)
+python main.py --config configs/NYCTaxi.yaml --device cuda
+python main.py --config configs/CHIBike.yaml --device cuda
+python main.py --config configs/T-Drive.yaml --device cuda
 ```
 
 ## Reference Code
