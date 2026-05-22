@@ -25,13 +25,10 @@ You can train and test **SSL-STMFormer** through the following commands for 6 da
 ```shell
 
 # graph datasets (raw_data/<name>.dyna + .geo + .rel)
-python main.py --config configs/PeMS04.yaml --device cuda
 python main.py --config configs/PeMS07.yaml --device cuda
-python main.py --config configs/PeMS08.yaml --device cuda
+
 
 # grid datasets (raw_data/<name>.grid + .geo, 8-neighbour grid adjacency)
-python main.py --config configs/NYCTaxi.yaml --device cuda
-python main.py --config configs/CHIBike.yaml --device cuda
 python main.py --config configs/T-Drive.yaml --device cuda
 ```
 
