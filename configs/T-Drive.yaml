@@ -1,0 +1,48 @@
+# T-Drive: 32 x 32 = 1024 cells, 60-min interval, inflow/outflow, LibCity .grid schema.
+dataset:
+  source: libcity_grid
+  root: ../data
+  name: T-Drive
+  data_col: [inflow, outflow]
+  grid_connectivity: 8
+  input_window: 6
+  output_window: 1
+  train_ratio: 0.7
+  val_ratio: 0.1
+
+model:
+  embed_dim: 32                      # 1024 nodes -> keep dims small for memory
+  skip_dim: 64
+  lape_dim: 8
+  enc_depth: 3
+  head_dim: 8
+  spatial_heads_per_kind: 1
+  temporal_heads_per_kind: 1
+  mlp_ratio: 2.0
+  drop: 0.1
+  attn_drop: 0.1
+  mask_ratio: 0.1
+  short_lambda: 2
+  long_topk: 5
+  add_time_in_day: true
+  add_day_in_week: true
+  n_prototypes: 12
+  shm_temp: 0.5
+  aug_percent: 0.1
+  use_ssl: true
+  output_dim: 2
+
+train:
+  epochs: 80
+  batch_size: 8
+  lr: 0.0005
+  weight_decay: 0.0
+  grad_clip: 5.0
+  early_stop_patience: 10
+  use_dwa: true
+  dwa_temp: 4.0
+  log_every: 50
+  num_workers: 2
+  ckpt_dir: checkpoints/T-Drive
+  device: cuda
+  mask_value: 5.0

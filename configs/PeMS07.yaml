@@ -1,0 +1,47 @@
+# PeMS07: 883-node traffic-flow graph, 5-min interval, LibCity .dyna schema.
+dataset:
+  source: libcity_dyna
+  root: ../data
+  name: PeMS07
+  data_col: [traffic_flow]
+  input_window: 12
+  output_window: 12
+  train_ratio: 0.6
+  val_ratio: 0.2
+
+model:
+  embed_dim: 64
+  skip_dim: 256
+  lape_dim: 8
+  enc_depth: 6
+  head_dim: 8
+  spatial_heads_per_kind: 2
+  temporal_heads_per_kind: 2
+  mlp_ratio: 4.0
+  drop: 0.1
+  attn_drop: 0.1
+  mask_ratio: 0.1
+  short_lambda: 3
+  long_topk: 5
+  add_time_in_day: true
+  add_day_in_week: true
+  n_prototypes: 16
+  shm_temp: 0.5
+  aug_percent: 0.1
+  use_ssl: true
+  output_dim: 1
+
+train:
+  epochs: 200
+  batch_size: 8
+  lr: 0.001
+  weight_decay: 0.0
+  grad_clip: 5.0
+  early_stop_patience: 20
+  use_dwa: true
+  dwa_temp: 4.0
+  log_every: 100
+  num_workers: 2
+  ckpt_dir: checkpoints/PeMS07
+  device: cuda
+  mask_value: 0.0
